@@ -1,0 +1,807 @@
+// Fonts
+$default-font: "Inconsolata", system-ui, -apple-system, "Segoe UI", Roboto,
+  "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif,
+  "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+$heading-font: "Inconsolata", sans-serif;
+$nav-font: "Inconsolata", sans-serif;
+
+// Global Colors
+$background-color: #ffffff;
+$default-color: #212529;
+$heading-color: #000000;
+$accent-color: #000000;
+$surface-color: #ffffff;
+$contrast-color: #ffffff;
+
+// Nav Menu Colors
+$nav-color: #5b5b5b;
+$nav-hover-color: #000000;
+$nav-mobile-background-color: #f5f5f5;
+$nav-dropdown-background-color: #ffffff;
+$nav-dropdown-color: #5b5b5b;
+$nav-dropdown-hover-color: #000000;
+
+// Color Presets
+.light-background {
+  background-color: #f9f9f9 !important;
+}
+/* Smooth scroll */
+:root {
+  scroll-behavior: smooth;
+}
+
+/*--------------------------------------------------------------
+# General Styling & Shared Classes
+--------------------------------------------------------------*/
+body {
+  color: $default-color;
+  background-color: $background-color;
+  font-family: $default-font;
+}
+
+a {
+  color: $accent-color;
+  text-decoration: none;
+  transition: 0.3s;
+}
+
+a:hover {
+  color: color-mix(in srgb, $accent-color, transparent 25%);
+  text-decoration: none;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: $heading-color;
+  font-family: $heading-font;
+}
+
+/*--------------------------------------------------------------
+# Global Header
+--------------------------------------------------------------*/
+.header {
+  color: $default-color;
+  background-color: $background-color;
+  padding: 15px 0;
+  transition: all 0.5s;
+  z-index: 997;
+
+  .logo {
+    line-height: 1;
+
+    img {
+      max-height: 32px;
+      margin-right: 8px;
+    }
+
+    h1 {
+      font-size: 30px;
+      margin: 0;
+      font-weight: 700;
+      color: $heading-color;
+    }
+  }
+}
+
+/*--------------------------------------------------------------
+# Navigation Menu
+--------------------------------------------------------------*/
+// NavMenu
+.mobile-nav-toggle {
+  color: $nav-color;
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  font-size: 32px;
+  line-height: 0;
+  cursor: pointer;
+  display: block !important;
+  z-index: 998;
+  transition: 0.3s;
+
+  &:hover {
+    color: $nav-hover-color;
+  }
+}
+
+.navmenu {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  right: -300px;
+  z-index: 997;
+  transition: 0.3s;
+  width: 300px;
+  overflow: hidden;
+
+  ul {
+    display: block;
+    list-style: none;
+    padding: 10px 0;
+    margin: 0;
+    overflow-y: auto;
+    transition: 0.3s;
+    z-index: 998;
+  }
+  a,
+  & a:focus {
+    color: $nav-dropdown-color;
+    padding: 10px 20px;
+    font-family: $nav-font;
+    font-size: 17px;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    white-space: nowrap;
+    transition: 0.3s;
+
+    i {
+      font-size: 12px;
+      line-height: 0;
+      margin-left: 5px;
+      width: 30px;
+      height: 30px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      transition: 0.3s;
+      background-color: color-mix(in srgb, $accent-color, transparent 90%);
+
+      &:hover {
+        background-color: $accent-color;
+        color: $contrast-color;
+      }
+    }
+  }
+
+  .active i,
+  .active:focus i {
+    background-color: $accent-color;
+    color: $contrast-color;
+    transform: rotate(180deg);
+  }
+
+  .dropdown ul {
+    position: static;
+    display: none;
+    z-index: 99;
+    padding: 10px 0;
+    margin: 10px 20px;
+    box-shadow: none;
+    transition: all 0.5s ease-in-out;
+  }
+
+  .dropdown > .dropdown-active {
+    display: block;
+    background-color: $nav-dropdown-background-color;
+    border: 1px solid color-mix(in srgb, $nav-dropdown-color, transparent 90%);
+  }
+}
+
+.mobile-nav-active {
+  overflow: hidden;
+
+  .mobile-nav-toggle {
+    right: 310px;
+    background-color: $surface-color;
+    border-radius: 50%;
+    border: 1px solid color-mix(in srgb, $default-color, transparent 80%);
+  }
+
+  .navmenu {
+    position: fixed;
+    overflow: hidden;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    background-color: $nav-mobile-background-color;
+    transition: 0.3s;
+  }
+}
+
+/*--------------------------------------------------------------
+# Global Footer
+--------------------------------------------------------------*/
+.footer {
+  background-color: $background-color;
+  color: $default-color;
+  font-size: 14px;
+  padding: 40px 0;
+  position: relative;
+
+  .copyright p {
+    margin-bottom: 0;
+  }
+
+  .social-links {
+    margin-top: 20px;
+
+    a {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      border: 1px solid color-mix(in srgb, $default-color, transparent 50%);
+      font-size: 16px;
+      color: color-mix(in srgb, $default-color, transparent 50%);
+      margin: 0 5px;
+      transition: 0.3s;
+
+      &:hover {
+        color: $accent-color;
+        border-color: $accent-color;
+      }
+    }
+  }
+}
+
+/*--------------------------------------------------------------
+# Preloader
+--------------------------------------------------------------*/
+#preloader {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  overflow: hidden;
+  background-color: $background-color;
+  transition: all 0.6s ease-out;
+
+  &:before {
+    content: "";
+    position: fixed;
+    top: calc(50% - 30px);
+    left: calc(50% - 30px);
+    border: 6px solid $accent-color;
+    border-top-color: color-mix(in srgb, $accent-color, transparent 90%);
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    animation: animate-preloader 1s linear infinite;
+  }
+}
+
+@keyframes animate-preloader {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/*--------------------------------------------------------------
+# Scroll Top Button
+--------------------------------------------------------------*/
+.scroll-top {
+  position: fixed;
+  visibility: hidden;
+  opacity: 0;
+  right: 15px;
+  bottom: -15px;
+  z-index: 99999;
+  background-color: $accent-color;
+  width: 44px;
+  height: 44px;
+  border-radius: 50px;
+  transition: all 0.4s;
+
+  i {
+    font-size: 24px;
+    color: $contrast-color;
+    line-height: 0;
+  }
+  &:hover {
+    background-color: color-mix(in srgb, $accent-color, transparent 20%);
+    color: $contrast-color;
+  }
+  &.active {
+    visibility: visible;
+    opacity: 1;
+    bottom: 15px;
+  }
+}
+
+/*--------------------------------------------------------------
+# Disable aos animation delay on mobile devices
+--------------------------------------------------------------*/
+@media screen and (max-width: 768px) {
+  [data-aos-delay] {
+    transition-delay: 0 !important;
+  }
+}
+
+/*--------------------------------------------------------------
+# Global Page Titles & Breadcrumbs
+--------------------------------------------------------------*/
+.page-title {
+  color: $default-color;
+  background-color: $background-color;
+  padding: 60px 0;
+  text-align: center;
+  position: relative;
+
+  h1 {
+    font-size: 42px;
+    font-weight: 700;
+    margin-bottom: 10px;
+  }
+  .breadcrumbs ol {
+    display: flex;
+    flex-wrap: wrap;
+    list-style: none;
+    justify-content: center;
+    padding: 0;
+    margin: 0;
+    font-size: 16px;
+    font-weight: 400;
+
+    li + li {
+      padding-left: 10px;
+      &::before {
+        content: "/";
+        display: inline-block;
+        padding-right: 10px;
+        color: color-mix(in srgb, $default-color, transparent 70%);
+      }
+    }
+  }
+}
+
+/*--------------------------------------------------------------
+# Global Sections
+--------------------------------------------------------------*/
+section,
+.section {
+  color: $default-color;
+  background-color: $background-color;
+  padding: 60px 0;
+  scroll-margin-top: 90px;
+  overflow: clip;
+}
+
+@media (max-width: 1199px) {
+  section,
+  .section {
+    scroll-margin-top: 66px;
+  }
+}
+
+/*--------------------------------------------------------------
+# Global Section Titles
+--------------------------------------------------------------*/
+.section-title {
+  text-align: center;
+  padding-bottom: 60px;
+  position: relative;
+
+  h2 {
+    font-size: 32px;
+    font-weight: 400;
+    margin-bottom: 15px;
+  }
+
+  p {
+    margin-bottom: 0;
+  }
+}
+
+/*--------------------------------------------------------------
+# Portfolio Section
+--------------------------------------------------------------*/
+.portfolio {
+  .portfolio-info {
+    h3 {
+      font-size: 24px;
+      margin-bottom: 5px;
+    }
+    p {
+      font-size: 15px;
+    }
+  }
+
+  .portfolio-filters {
+    padding: 0;
+    margin: 0 auto 20px auto;
+    list-style: none;
+
+    li {
+      cursor: pointer;
+      display: inline-block;
+      padding: 0;
+      font-size: 16px;
+      font-weight: 400;
+      margin: 0 10px;
+      line-height: 1;
+      margin-bottom: 5px;
+      transition: all 0.3s ease-in-out;
+
+      &:hover,
+      &.filter-active {
+        border-bottom: 2px solid $default-color;
+        padding-bottom: 3px;
+      }
+      &:first-child {
+        margin-left: 0;
+      }
+      &:last-child {
+        margin-right: 5px;
+      }
+    }
+  }
+}
+
+@media (max-width: 575px) {
+  .portfolio .portfolio-filters li {
+    font-size: 14px;
+    margin: 0 5px;
+  }
+}
+
+.portfolio .portfolio-content {
+  position: relative;
+  overflow: hidden;
+
+  img {
+    transition: 0.3s;
+  }
+
+  .portfolio-info {
+    opacity: 0;
+    position: absolute;
+    inset: 0;
+    z-index: 3;
+    transition: all ease-in-out 0.3s;
+    background: rgba($color: #000000, $alpha: 0.6);
+    padding: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+
+    h4 {
+      font-size: 18px;
+      mask-border: 0;
+      font-weight: 400;
+      color: #ffffff;
+      display: inline-block;
+    }
+    p {
+      text-align: center;
+      display: inline-block;
+      font-size: 14px;
+      font-weight: 400;
+      color: rgba($color: #ffffff, $alpha: 0.8);
+    }
+    .preview-link,
+    .details-link {
+      font-size: 26px;
+      color: #fff;
+      transition: 0.3s;
+      line-height: 1.2;
+      &:hover {
+        color: $accent-color;
+      }
+    }
+    .details-link {
+      left: 50%;
+      font-size: 34px;
+      line-height: 0;
+    }
+  }
+  &:hover .portfolio-info {
+    opacity: 1;
+  }
+  &:hover img {
+    transform: scale(1.1);
+  }
+}
+
+/*--------------------------------------------------------------
+# Portfolio Details Section
+--------------------------------------------------------------*/
+.portfolio-details {
+  .portfolio-details-slider {
+    img {
+      width: 100%;
+    }
+    .swiper-pagination {
+      margin-top: 20px;
+      position: relative;
+
+      .swiper-pagination-bullet {
+        width: 12px;
+        height: 12px;
+        background-color: color-mix(in srgb, $default-color, transparent 85%);
+        opacity: 1;
+      }
+      .swiper-pagination-bullet-active {
+        background-color: $accent-color;
+      }
+    }
+  }
+  .portfolio-info {
+    background-color: $surface-color;
+    padding: 30px;
+    box-shadow: 0 0 30px rgba($color: #000000, $alpha: 0.1);
+    h3 {
+      font-size: 22px;
+      font-weight: 700;
+      margin-bottom: 20px;
+      padding-bottom: 20px;
+      border-bottom: 1px solid
+        color-mix(in srgb, $default-color, transparent 85%);
+    }
+    ul {
+      list-style: none;
+      padding: 0;
+      font-size: 15px;
+
+      li + li {
+        margin-top: 10px;
+      }
+    }
+  }
+  .portfolio-description {
+    padding-top: 30px;
+    h2 {
+      font-size: 26px;
+      font-weight: 700;
+    }
+    p {
+      padding: 0;
+      color: color-mix(in srgb, $default-color, transparent 30%);
+    }
+  }
+}
+
+/*--------------------------------------------------------------
+# Skills Section
+--------------------------------------------------------------*/
+.skills {
+  .skills-set {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 12px;
+    color: $contrast-color;
+
+    .skill {
+      background-color: #5b5b5b;
+      padding: 6px 12px;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: 0.3s;
+
+      &:hover {
+        background-color: color-mix(in srgb, #5b5b5b, transparent 15%);
+      }
+    }
+  }
+}
+
+/*--------------------------------------------------------------
+# About Section
+--------------------------------------------------------------*/
+.about .content {
+  h2 {
+    font-weight: 700;
+    font-size: 24px;
+  }
+
+  ul {
+    list-style: none;
+    padding: 0;
+
+    li {
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+    }
+    strong {
+      margin-right: 10px;
+    }
+    i {
+      font-size: 16px;
+      margin-right: 5px;
+      color: $accent-color;
+      line-height: 0;
+    }
+  }
+}
+
+/*--------------------------------------------------------------
+# Resume Section
+--------------------------------------------------------------*/
+.resume {
+  .resume-title {
+    color: $heading-color;
+    font-size: 26px;
+    font-weight: 700;
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
+
+  .resume-item {
+    padding: 0 0 20px 20px;
+    margin-top: -2px;
+    border-left: 2px solid $accent-color;
+    position: relative;
+
+    h4 {
+      line-height: 18px;
+      font-size: 18px;
+      font-weight: 600;
+      text-transform: uppercase;
+      color: color-mix(in srgb, $default-color, transparent 20%);
+      margin-bottom: 10px;
+    }
+
+    h5 {
+      font-size: 16px;
+      padding: 5px 15px;
+      display: inline-block;
+      font-weight: 600;
+      margin-bottom: 10px;
+    }
+
+    ul {
+      padding-left: 20px;
+
+      li {
+        padding-bottom: 10px;
+      }
+    }
+    &:last-child {
+      padding-bottom: 0;
+    }
+
+    &::before {
+      content: "";
+      position: absolute;
+      width: 16px;
+      height: 16px;
+      border-radius: 50px;
+      left: -9px;
+      top: 0;
+      background: $background-color;
+      border: 2px solid $accent-color;
+    }
+  }
+}
+
+/*--------------------------------------------------------------
+# Contact Section
+--------------------------------------------------------------*/
+.contact {
+  background-image: url("../img/contact-bg.png");
+  background-position: left center;
+  background-repeat: no-repeat;
+  position: relative;
+
+  .info-item + .info-item {
+    margin-top: 40px;
+  }
+
+  .info-item {
+    i {
+      background: $accent-color;
+      color: $contrast-color;
+      font-size: 20px;
+      width: 44px;
+      height: 44px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-radius: 50px;
+      transition: all 0.3s ease-in-out;
+      margin-right: 15px;
+    }
+    h3 {
+      padding: 0;
+      font-size: 18px;
+      font-weight: 700;
+      margin-bottom: 5px;
+    }
+
+    p {
+      padding: 0;
+      margin-bottom: 0;
+      font-size: 14px;
+    }
+  }
+
+  .contact-form {
+    height: 100%;
+
+    input[type="text"],
+    input[type="email"],
+    textarea {
+      font-size: 14px;
+      padding: 10px 15px;
+      box-shadow: none;
+      border-radius: 0;
+      color: $default-color;
+      background-color: color-mix(in srgb, $background-color, transparent 50%);
+      border-color: color-mix(in srgb, $default-color, transparent 80%);
+
+      &:focus {
+        border-color: $accent-color;
+      }
+      &::placeholder {
+        color: color-mix(in srgb, $default-color, transparent 70%);
+      }
+    }
+
+    input[type="submit"] {
+      color: $contrast-color;
+      background: $accent-color;
+      border: 0;
+      padding: 10px 30px;
+      transition: 0.4s;
+      border-radius: 50px;
+
+      &:hover {
+        background: color-mix(in srgb, $accent-color, transparent 20%);
+      }
+    }
+  }
+
+  &:before {
+    content: "";
+    background: color-mix(in srgb, $background-color, transparent 30%);
+    position: absolute;
+    bottom: 0;
+    top: 0;
+    left: 0;
+    right: 0;
+  }
+}
+
+@media (max-width: 640px) {
+  .contact {
+    background-position: center 50px;
+    background-size: contain;
+  }
+}
+
+/*--------------------------------------------------------------
+# 404 Error
+--------------------------------------------------------------*/
+.custom-404 {
+  text-align: center;
+  padding: 100px 20px;
+  font-family: $default-font;
+
+  h1 {
+    font-size: 120px;
+    margin-bottom: 20px;
+    font-family: $heading-font;
+    color: #333;
+  }
+  h2 {
+    font-size: 32px;
+    margin-bottom: 30px;
+    color: #555;
+  }
+  a {
+    display: inline-block;
+    padding: 12px 25px;
+    color: $contrast-color;
+    background: $accent-color;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: all 0.3s;
+
+    &:hover {
+      background: color-mix(in srgb, $accent-color, transparent 20%);
+    }
+  }
+}
