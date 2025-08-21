@@ -20,11 +20,12 @@ A **custom WordPress theme** developed for my personal portfolio website. The th
    ```bash
    git clone https://github.com/prakashtamang/my_portfolio.git
 
-2.Upload the theme folder to your WordPress installation at:  
+2. Upload the theme folder to your WordPress installation at:  
    ```bash
    /wp-content/themes/
 
 3. Log in to your WordPress admin dashboard.
+
 4. Go to Appearance > Themes.
 5. Activate Portfolio Theme.
 
